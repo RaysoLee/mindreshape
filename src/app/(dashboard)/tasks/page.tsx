@@ -149,7 +149,7 @@ export default async function TasksPage() {
                   key={task.id}
                   task={task}
                   userId={user.id}
-                  isAdded={todayTasks?.some((ut: any) => ut.task_id === task.id)}
+                  isAdded={todayTasks?.some((ut: any) => ut.task_id === task.id) || false}
                 />
               ))}
             </div>
@@ -173,7 +173,7 @@ export default async function TasksPage() {
                   key={task.id}
                   task={task}
                   userId={user.id}
-                  isAdded={todayTasks?.some((ut: any) => ut.task_id === task.id)}
+                  isAdded={todayTasks?.some((ut: any) => ut.task_id === task.id) || false}
                 />
               ))}
             </div>

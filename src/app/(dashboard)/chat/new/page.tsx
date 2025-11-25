@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { ChatInterface } from "@/components/chat/chat-interface";
 
-export default function NewChatPage() {
+function NewChatContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
@@ -79,4 +79,21 @@ export default function NewChatPage() {
   }
 
   return null;
+}
+
+export default function NewChatPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-gray-600">创建新对话...</p>
+          </div>
+        </div>
+      }
+    >
+      <NewChatContent />
+    </Suspense>
+  );
 }
